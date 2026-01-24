@@ -1,38 +1,381 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>EvexoPay</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #0b0f17; color: #fff; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 56px 20px; }
-    .card { background: #121a2a; border: 1px solid #22304d; border-radius: 16px; padding: 28px; }
-    h1 { margin: 0 0 10px; font-size: 34px; }
-    p { margin: 0 0 20px; color: #cbd5e1; line-height: 1.5; }
-    .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
-    a.btn { display: inline-block; padding: 12px 16px; border-radius: 12px; text-decoration: none; font-weight: 700; }
-    .primary { background: #3b82f6; color: #fff; }
-    .ghost { background: transparent; border: 1px solid #334155; color: #fff; }
-    .note { margin-top: 18px; font-size: 13px; color: #94a3b8; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvexoPay | Checkout de Alta Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+        }
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 100%);
+            z-index: -1;
+            filter: blur(60px);
+        }
+        .mobile-menu-open {
+            display: flex !important;
+        }
+    </style>
 </head>
-<body>
-  <div class="wrap">
-    <div class="card">
-      <h1>EvexoPay</h1>
-      <p>Checkout e painel de gestão para vender com mais controle, tracking e performance.</p>
+<body class="selection:bg-emerald-500 selection:text-white">
 
-      <div class="btns">
-        <a class="btn primary" href="https://admin.evexopay.com" target="_blank" rel="noreferrer">Entrar no Painel</a>
-        <a class="btn ghost" href="https://checkout.evexopay.com" target="_blank" rel="noreferrer">Acessar Checkout</a>
-        <a class="btn ghost" href="https://go.evexopay.com" target="_blank" rel="noreferrer">Páginas (Go)</a>
-      </div>
+    <!-- Header -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-white uppercase">Evexo<span class="text-emerald-500">Pay</span></span>
+            </div>
 
-      <div class="note">
-        Em breve: cadastro de usuários em app.evexopay.com, modelos de checkout e copys configuráveis.
-      </div>
-    </div>
-  </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#beneficios" class="text-slate-300 hover:text-emerald-400 transition-colors text-sm font-medium">Benefícios</a>
+                <a href="#como-funciona" class="text-slate-300 hover:text-emerald-400 transition-colors text-sm font-medium">Como Funciona</a>
+                <a href="#publico" class="text-slate-300 hover:text-emerald-400 transition-colors text-sm font-medium">Para Quem</a>
+                <a href="/app/#/login" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full text-sm font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-900/20">
+                    Entrar
+                </a>
+            </nav>
+
+            <button id="menu-toggle" class="md:hidden text-white">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-effect absolute top-full left-0 w-full p-6 flex-col gap-4 border-t border-white/10">
+            <a href="#beneficios" class="text-slate-300 py-2 mobile-link">Benefícios</a>
+            <a href="#como-funciona" class="text-slate-300 py-2 mobile-link">Como Funciona</a>
+            <a href="#publico" class="text-slate-300 py-2 mobile-link">Para Quem</a>
+            <a href="/app/#/login" class="w-full text-center py-3 bg-emerald-600 text-white rounded-xl font-bold">Acessar Painel</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative pt-40 pb-20 overflow-hidden">
+            <div class="hero-glow -top-20 -left-20"></div>
+            <div class="hero-glow top-40 -right-20"></div>
+            
+            <div class="container mx-auto px-6 relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect border-emerald-500/20 text-emerald-400 text-xs font-bold mb-8 uppercase tracking-widest">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    Processamento em Tempo Real
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black text-white leading-tight mb-6 max-w-4xl mx-auto">
+                    A Próxima Geração do <span class="gradient-text">Checkout Profissional</span>
+                </h1>
+                
+                <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Maximize suas conversões com PIX, Cartão e uma infraestrutura robusta. 
+                    Controle total, estabilidade absoluta e tracking de alta precisão.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="/app/#/register" class="w-full sm:w-auto px-10 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-xl shadow-emerald-900/40">
+                        Acessar Painel 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </a>
+                    <a href="#como-funciona" class="w-full sm:w-auto px-10 py-4 glass-effect text-white font-bold rounded-xl hover:bg-white/10 transition-all border border-white/10">
+                        Ver Demonstração
+                    </a>
+                </div>
+
+                <div class="mt-20 relative max-w-5xl mx-auto">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
+                    <img src="https://picsum.photos/seed/dashboard/1200/600" alt="EvexoPay Dashboard" class="rounded-2xl border border-white/10 shadow-2xl opacity-80" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="beneficios" class="py-24 bg-slate-950/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-black text-white mb-4">Desenvolvido para Escalar</h2>
+                    <p class="text-slate-400 max-w-xl mx-auto">Tecnologia de ponta focada em simplificar pagamentos e maximizar sua margem de lucro.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="p-8 rounded-2xl glass-effect border-white/5 hover:border-emerald-500/30 transition-all group">
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Alta Conversão</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Checkout otimizado para mobile e desktop, reduzindo o atrito e aumentando sua taxa de aprovação.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="p-8 rounded-2xl glass-effect border-white/5 hover:border-emerald-500/30 transition-all group">
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Estabilidade Real</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Sua operação não pode parar. Garantimos 99.9% de uptime mesmo em grandes picos de vendas.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="p-8 rounded-2xl glass-effect border-white/5 hover:border-emerald-500/30 transition-all group">
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Tracking Avançado</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Integrações nativas com Facebook, Google e TikTok Ads para tracking preciso de eventos.</p>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="p-8 rounded-2xl glass-effect border-white/5 hover:border-emerald-500/30 transition-all group">
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Anti-fraude Nativo</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Proteção multicamadas com análise de comportamento e IA para bloquear transações suspeitas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="como-funciona" class="py-24 relative overflow-hidden">
+            <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-emerald-500 font-bold uppercase tracking-widest text-sm mb-4 block">Fluxo de Trabalho</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-white mb-8">Comece a Vender em Minutos</h2>
+                    <div class="space-y-10">
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 rounded-full border-2 border-emerald-500 flex items-center justify-center text-emerald-500 font-black flex-shrink-0 text-xl">01</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Conecte sua Conta</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed">Crie sua conta na EvexoPay e conecte suas chaves de API com segurança em segundos.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 rounded-full border-2 border-emerald-500 flex items-center justify-center text-emerald-500 font-black flex-shrink-0 text-xl">02</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Configure seu Produto</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed">Adicione seus produtos, defina preços e personalize o design do seu checkout.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 rounded-full border-2 border-emerald-500 flex items-center justify-center text-emerald-500 font-black flex-shrink-0 text-xl">03</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Venda e Receba</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed">Pronto! Comece a processar pagamentos via PIX ou Cartão e acompanhe tudo em tempo real.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-emerald-500/10 blur-[100px] -z-10"></div>
+                    <div class="p-4 glass-effect rounded-3xl border-emerald-500/20">
+                        <img src="https://picsum.photos/seed/setup/800/600" alt="Processo de Setup" class="rounded-2xl w-full" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audience Section -->
+        <section id="publico" class="py-24 bg-slate-950/80">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-black text-white mb-16">Feito para <span class="gradient-text">Profissionais</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-10 rounded-2xl bg-slate-900 border border-white/5 flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500 mb-6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        <h4 class="text-2xl font-bold text-white mb-4">Infoprodutores</h4>
+                        <p class="text-slate-400">Lance seus cursos e mentorias com a estabilidade necessária para suportar milhares de checkouts simultâneos.</p>
+                    </div>
+                    <div class="p-10 rounded-2xl bg-slate-900 border border-white/5 flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-500 mb-6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <h4 class="text-2xl font-bold text-white mb-4">Afiliados</h4>
+                        <p class="text-slate-400">Maximize seu ROI com trackings precisos e uma experiência de compra rápida para seus leads.</p>
+                    </div>
+                    <div class="p-10 rounded-2xl bg-slate-900 border border-white/5 flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400 mb-6"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                        <h4 class="text-2xl font-bold text-white mb-4">Dropshipping</h4>
+                        <p class="text-slate-400">Escale sua loja global ou nacional com taxas competitivas e suporte a múltiplos meios de pagamento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-24">
+            <div class="container mx-auto px-6 text-center mb-16">
+                <h2 class="text-4xl font-black text-white mb-4">Quem Usa, Recomenda</h2>
+                <div class="flex items-center justify-center gap-1 text-emerald-500 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-emerald-500"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-emerald-500"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-emerald-500"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-emerald-500"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-emerald-500"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="text-slate-400">Mais de 2.000 operações escalando com a EvexoPay.</p>
+            </div>
+
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-8 rounded-2xl glass-effect border-white/5 italic text-slate-300">
+                    <p class="mb-6 leading-relaxed">"A EvexoPay mudou o jogo da minha operação. Minhas taxas de aprovação no cartão subiram quase 15% após a migração."</p>
+                    <div class="flex items-center gap-4 non-italic">
+                        <div class="w-12 h-12 rounded-full bg-slate-800 border border-emerald-500/20 overflow-hidden">
+                            <img src="https://picsum.photos/seed/user1/100/100" alt="User" />
+                        </div>
+                        <div>
+                            <p class="font-bold text-white">Roberto Silva</p>
+                            <p class="text-xs text-emerald-500">CEO na DigitalScale</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="p-8 rounded-2xl glass-effect border-white/5 italic text-slate-300">
+                    <p class="mb-6 leading-relaxed">"A melhor infraestrutura de checkout que já usei. O suporte é rápido e as ferramentas de tracking são impecáveis."</p>
+                    <div class="flex items-center gap-4 non-italic">
+                        <div class="w-12 h-12 rounded-full bg-slate-800 border border-emerald-500/20 overflow-hidden">
+                            <img src="https://picsum.photos/seed/user2/100/100" alt="User" />
+                        </div>
+                        <div>
+                            <p class="font-bold text-white">Juliana Costa</p>
+                            <p class="text-xs text-emerald-500">Expert em Lançamentos</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="p-8 rounded-2xl glass-effect border-white/5 italic text-slate-300">
+                    <p class="mb-6 leading-relaxed">"Finalmente um checkout que aguenta picos de tráfego pesado sem oscilar. Recomendado para quem escala forte."</p>
+                    <div class="flex items-center gap-4 non-italic">
+                        <div class="w-12 h-12 rounded-full bg-slate-800 border border-emerald-500/20 overflow-hidden">
+                            <img src="https://picsum.photos/seed/user3/100/100" alt="User" />
+                        </div>
+                        <div>
+                            <p class="font-bold text-white">Marcos Oliveira</p>
+                            <p class="text-xs text-emerald-500">Founder da DropHub</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="py-20 relative">
+            <div class="container mx-auto px-6">
+                <div class="relative p-12 md:p-20 rounded-[40px] overflow-hidden bg-gradient-to-br from-emerald-600 to-cyan-700 text-center">
+                    <h2 class="text-4xl md:text-6xl font-black text-white mb-8 relative z-10 leading-tight">Pronto para elevar seu faturamento?</h2>
+                    <p class="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-12 relative z-10 font-medium">Junte-se a centenas de empresas que escalaram seus negócios com o checkout mais rápido do mercado.</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+                        <a href="/app/#/register" class="px-12 py-5 bg-white text-emerald-700 font-black rounded-2xl hover:bg-slate-100 transition-all transform hover:scale-105 shadow-2xl">Criar Minha Conta Grátis</a>
+                        <a href="#" class="px-12 py-5 bg-transparent border-2 border-white/30 text-white font-black rounded-2xl hover:bg-white/10 transition-all">Falar com Especialista</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-16 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                        <span class="text-xl font-black text-white uppercase tracking-tighter">Evexo<span class="text-emerald-500">Pay</span></span>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Soluções completas de pagamento e checkout para negócios que buscam escala e profissionalismo.</p>
+                </div>
+                
+                <div>
+                    <h5 class="text-white font-bold mb-6">Plataforma</h5>
+                    <ul class="space-y-4 text-slate-500 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400">Taxas</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Segurança</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">API Docs</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Status</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-white font-bold mb-6">Empresa</h5>
+                    <ul class="space-y-4 text-slate-500 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="text-white font-bold mb-6">Suporte</h5>
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-white/5">
+                        <p class="text-slate-500 text-sm mb-4">Tem alguma dúvida?</p>
+                        <a href="mailto:contato@evexopay.com" class="text-emerald-400 font-bold block mb-2">contato@evexopay.com</a>
+                        <p class="text-slate-500 text-xs italic">Segunda a Sexta, 09h às 18h</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-600 text-xs text-center md:text-left">
+                <p>© 2024 EvexoPay Tecnologia LTDA. Todos os direitos reservados.</p>
+                <div class="flex gap-6">
+                    <p>CNPJ: 00.000.000/0001-00</p>
+                    <p>Feito com ❤️ no Brasil</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('glass-effect', 'py-4');
+                header.classList.remove('py-6');
+            } else {
+                header.classList.remove('glass-effect', 'py-4');
+                header.classList.add('py-6');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('mobile-menu-open');
+            menuIcon.classList.toggle('hidden', isOpen);
+            closeIcon.classList.toggle('hidden', !isOpen);
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('mobile-menu-open');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
