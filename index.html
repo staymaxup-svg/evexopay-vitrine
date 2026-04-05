@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evexopay | O Checkout que Converte</title>
+    <title>Evexopay - O Checkout que Converte</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +26,8 @@
                 200: '#ddd6fe',
                 300: '#c4b5fd',
                 400: '#a78bfa',
-                500: '#8b5cf6',
-                600: '#7c3aed',
+                500: '#8b5cf6', // Violet 500
+                600: '#7c3aed', // Violet 600 (Main)
                 700: '#6d28d9',
                 800: '#5b21b6',
                 900: '#4c1d95', 
@@ -34,7 +37,6 @@
             animation: {
                 'fade-in': 'fadeIn 0.5s ease-out forwards',
                 'slide-up': 'slideUp 0.5s ease-out forwards',
-                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
                 fadeIn: {
@@ -43,7 +45,7 @@
                 },
                 slideUp: {
                     '0%': { opacity: '0', transform: 'translateY(20px)' },
-                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                    '100%': { opacity: '1' },
                 }
             }
           }
@@ -53,63 +55,69 @@
     <style>
         body { background-color: #020617; color: #f8fafc; overflow-x: hidden; }
         .gradient-text {
-            background: linear-gradient(to right, #10b981, #06b6d4, #8b5cf6);
+            background: linear-gradient(to right, #a78bfa, #818cf8, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .glass {
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .glass-hover:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(16, 185, 129, 0.3);
+            border-color: rgba(139, 92, 246, 0.3);
             transform: translateY(-2px);
         }
-        .hero-glow {
-            position: absolute;
-            width: 800px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 100%);
-            z-index: -1;
-            filter: blur(80px);
-        }
-        .gateway-card {
-            @apply bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center justify-center text-center text-sm font-bold text-slate-300 hover:border-emerald-500/50 hover:bg-slate-800 hover:text-white transition-all cursor-default shadow-sm h-16 select-none;
-        }
+        html { scroll-behavior: smooth; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
         .mobile-menu-open {
             display: flex !important;
+            flex-direction: column;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-100">
+<body class="antialiased selection:bg-brand-500/30 selection:text-brand-100">
 
     <!-- NAVBAR -->
-    <nav id="main-header" class="fixed w-full z-50 transition-all duration-300 py-6 border-b border-white/0">
+    <nav id="main-header" class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-14">
+            <div class="flex items-center justify-between h-20">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-brand-600 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-900/20">
-                        <i data-lucide="layers" class="text-white w-6 h-6"></i>
+                    <div class="h-8" aria-label="Evexopay">
+                        <svg class="h-8 w-auto" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Evexopay">
+                            <defs>
+                                <linearGradient id="brand_grad_nav" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#7c3aed"/>
+                                    <stop offset="100%" stop-color="#3b82f6"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4Z" fill="url(#brand_grad_nav)" fill-opacity="0.2"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 8C15.1634 8 8 15.1634 8 24C8 32.8366 15.1634 40 24 40C32.8366 40 40 32.8366 40 24C40 15.1634 32.8366 8 24 8ZM27.5 16.5L19.5 22.5L27.5 28.5V33L15 23.5V21.5L27.5 12V16.5ZM34.5 21.5L29.5 25.25L24.5 21.5V19L29.5 22.75L34.5 19V21.5Z" fill="url(#brand_grad_nav)"/>
+                            <text x="56" y="32" font-family="'Inter', sans-serif" font-weight="800" font-size="24" fill="#FFFFFF" letter-spacing="-0.5">Evexopay</text>
+                        </svg>
                     </div>
-                    <span class="text-2xl font-extrabold tracking-tight text-white uppercase">Evexo<span class="text-emerald-500">Pay</span></span>
                 </div>
-                
+
                 <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                    <a href="#gateways" class="hover:text-emerald-400 transition-colors">Gateways</a>
-                    <a href="#integracoes" class="hover:text-emerald-400 transition-colors">Integrações</a>
-                    <a href="#membros" class="hover:text-emerald-400 transition-colors">Área de Membros</a>
-                    <a href="#taxas" class="hover:text-emerald-400 transition-colors">Taxas</a>
+                    <a href="#gateways" class="hover:text-white transition-colors">Gateways</a>
+                    <a href="#integracoes" class="hover:text-white transition-colors">Integrações</a>
+                    <a href="#membros" class="hover:text-white transition-colors">Área de Membros</a>
+                    <a href="#taxas" class="hover:text-white transition-colors">Taxas</a>
                 </div>
 
                 <div class="flex items-center gap-4">
                     <a href="https://app.evexopay.com/#/login" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors">Entrar</a>
-                    <a href="https://app.evexopay.com/#/register" class="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-emerald-600 text-white rounded-lg font-bold text-sm hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-900/20 transform hover:-translate-y-0.5">
+                    <a href="https://app.evexopay.com/#/register" class="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-white text-slate-950 rounded-lg font-bold text-sm hover:bg-slate-200 transition-all shadow-lg shadow-white/5 transform hover:-translate-y-0.5">
                         Criar Conta
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
-                    <button id="menu-toggle" class="md:hidden text-white">
+                    <button type="button" id="menu-toggle" class="md:hidden text-white p-2" aria-label="Abrir menu">
                         <i data-lucide="menu" id="menu-icon"></i>
                         <i data-lucide="x" id="close-icon" class="hidden"></i>
                     </button>
@@ -117,25 +125,26 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass absolute top-full left-0 w-full p-6 flex-col gap-4 border-t border-white/10 animate-fade-in">
+        <div id="mobile-menu" class="hidden md:hidden glass absolute top-full left-0 w-full p-6 gap-4 border-t border-white/10">
             <a href="#gateways" class="text-slate-300 py-2 mobile-link">Gateways</a>
             <a href="#integracoes" class="text-slate-300 py-2 mobile-link">Integrações</a>
             <a href="#membros" class="text-slate-300 py-2 mobile-link">Área de Membros</a>
             <a href="#taxas" class="text-slate-300 py-2 mobile-link">Taxas</a>
-            <a href="https://app.evexopay.com/#/register" class="w-full text-center py-3 bg-emerald-600 text-white rounded-xl font-bold mt-2">Criar Conta Grátis</a>
+            <a href="https://app.evexopay.com/#/register" class="w-full text-center py-3 bg-white text-slate-950 rounded-xl font-bold mt-2">Criar Conta Grátis</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="hero-glow top-0 left-1/2 -translate-x-1/2"></div>
+        <!-- Background Effects -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-600/20 rounded-full blur-[120px] -z-10 opacity-40 pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] -z-10 opacity-30 pointer-events-none"></div>
         
         <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-8 uppercase tracking-wider animate-slide-up">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-300 text-xs font-bold mb-8 uppercase tracking-wider animate-slide-up">
                 <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
                 </span>
                 Nova Geração de Pagamentos
             </div>
@@ -150,29 +159,43 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style="animation-delay: 0.3s;">
-                <a href="https://app.evexopay.com/#/register" class="w-full sm:w-auto px-10 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-lg shadow-xl shadow-emerald-900/40 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                <a href="https://app.evexopay.com/#/register" class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-500 text-white rounded-xl font-bold text-lg shadow-xl shadow-brand-600/20 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
                     Começar Agora Grátis <i data-lucide="chevron-right" class="w-5 h-5"></i>
                 </a>
-                <a href="https://app.evexopay.com/#/login" class="w-full sm:w-auto px-10 py-4 glass text-white font-bold rounded-xl hover:bg-white/10 transition-all border border-white/10">
+                <a href="https://app.evexopay.com/#/login" class="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-lg transition-all backdrop-blur-sm">
                     Acessar Dashboard
                 </a>
             </div>
 
+            <!-- Dashboard Preview Mockup -->
             <div class="mt-20 relative mx-auto max-w-5xl animate-slide-up" style="animation-delay: 0.5s;">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-blue-600 rounded-2xl blur opacity-20"></div>
                 <div class="relative bg-slate-900 border border-white/10 rounded-2xl p-2 shadow-2xl">
-                    <img src="https://picsum.photos/seed/evexopay/1200/700" alt="Evexopay Dashboard Preview" class="rounded-xl opacity-80" />
-                    <div class="absolute inset-0 flex items-center justify-center z-20 group cursor-pointer">
-                        <span class="bg-emerald-600 text-white px-8 py-4 rounded-full font-bold shadow-lg transform group-hover:scale-105 transition-transform flex items-center gap-2">
+                    <a href="https://youtu.be/p87HWTfOcVw" target="_blank" rel="noopener noreferrer" class="absolute top-0 left-0 w-full h-full bg-slate-950/50 rounded-xl z-10 flex items-center justify-center group cursor-pointer">
+                        <span class="bg-brand-600 text-white px-6 py-3 rounded-full font-bold shadow-lg transform group-hover:scale-105 transition-transform flex items-center gap-2">
                             <i data-lucide="play-circle"></i> Ver Demonstração
                         </span>
+                    </a>
+                    <!-- Placeholder for dashboard image -->
+                    <div class="w-full h-[300px] md:h-[500px] bg-slate-800 rounded-xl flex items-center justify-center overflow-hidden">
+                        <div class="grid grid-cols-12 gap-4 w-full h-full p-4 opacity-40 scale-95 blur-sm">
+                            <div class="col-span-3 bg-slate-700 h-full rounded-lg"></div>
+                            <div class="col-span-9 grid grid-rows-3 gap-4">
+                                <div class="row-span-1 grid grid-cols-3 gap-4">
+                                    <div class="bg-slate-700 rounded-lg h-full"></div>
+                                    <div class="bg-slate-700 rounded-lg h-full"></div>
+                                    <div class="bg-slate-700 rounded-lg h-full"></div>
+                                </div>
+                                <div class="row-span-2 bg-slate-700 rounded-lg h-full"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- GATEWAYS DE PAGAMENTO -->
+    <!-- GATEWAYS DE PAGAMENTO (UPDATED) -->
     <section id="gateways" class="py-24 bg-slate-950 relative border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -182,11 +205,12 @@
                 </p>
             </div>
 
-            <div class="glass p-8 md:p-10 rounded-3xl border-emerald-500/10 relative overflow-hidden group hover:border-emerald-500/30 transition-colors mb-12">
-                <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-emerald-900/5 to-transparent opacity-50 pointer-events-none"></div>
+            <div class="glass p-8 md:p-10 rounded-3xl border-brand-500/10 relative overflow-hidden group hover:border-brand-500/30 transition-colors mb-12">
+                <!-- Background Shine -->
+                <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-brand-900/10 to-transparent opacity-50 pointer-events-none"></div>
                 
                 <div class="flex items-center gap-3 mb-8 relative z-10">
-                    <div class="p-2 bg-emerald-500/20 rounded-lg text-emerald-400">
+                    <div class="p-2 bg-brand-500/20 rounded-lg text-brand-400">
                         <i data-lucide="wallet"></i>
                     </div>
                     <div>
@@ -195,48 +219,104 @@
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
-                    <div class="gateway-card">Mercado Pago</div>
-                    <div class="gateway-card">PushinPay</div>
-                    <div class="gateway-card">Stripe</div>
-                    <div class="gateway-card">PayPal</div>
+                <div class="grid grid-cols-1 gap-12 relative z-10">
+                    
+                    <!-- BRASIL -->
+                    <div>
+                        <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2 border-b border-white/5 pb-2">
+                            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f1e7-1f1f7.png" class="w-5 h-5 grayscale opacity-80" alt="Brasil">
+                            Brasil — Gateways Principais
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                            <!-- Card Template -->
+                            <div class="gateway-card">Mercado Pago</div>
+                            <div class="gateway-card">Pagar.me</div>
+                            <div class="gateway-card">PagSeguro</div>
+                            <div class="gateway-card">Asaas</div>
+                            <div class="gateway-card">Gerencianet</div>
+                            <div class="gateway-card">Cielo</div>
+                            <div class="gateway-card">Juno</div>
+                            <div class="gateway-card">Koin</div>
+                            <div class="gateway-card">Zoop</div>
+                            <div class="gateway-card">Barte</div>
+                            <div class="gateway-card">Klap</div>
+                            <div class="gateway-card">Getnet</div>
+                            <div class="gateway-card">Braspag</div>
+                            <div class="gateway-card">NuPay</div>
+                            <div class="gateway-card">SafraPay</div>
+                            <div class="gateway-card">VR</div>
+                            <div class="gateway-card border-emerald-500/30 text-emerald-300 bg-emerald-900/10">
+                                <i data-lucide="shield-check" class="w-3 h-3 mr-1"></i> ClearSale
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INTERNACIONAL -->
+                    <div>
+                        <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2 border-b border-white/5 pb-2">
+                            <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i>
+                            Internacional
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                            <div class="gateway-card">Stripe</div>
+                            <div class="gateway-card">PayPal</div>
+                            <div class="gateway-card">Payoneer</div>
+                            <div class="gateway-card">Authorize.net</div>
+                            <div class="gateway-card">Adyen</div>
+                            <div class="gateway-card">Braintree</div>
+                            <div class="gateway-card">WorldPay</div>
+                            <div class="gateway-card">Chargebee</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+            
+            <style>
+                .gateway-card {
+                    @apply bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center justify-center text-center text-sm font-bold text-slate-300 hover:border-brand-500/50 hover:bg-slate-800 hover:text-white transition-all cursor-default shadow-sm h-16 select-none;
+                }
+            </style>
 
-            <!-- INTEGRAÇÕES -->
+            <!-- INTEGRAÇÕES ESSENCIAIS -->
             <div id="integracoes" class="mb-12 pt-12">
                  <h3 class="text-2xl font-bold text-white mb-8 text-center">Integrações Essenciais para Escalar Suas Vendas</h3>
                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                     <!-- Tracking -->
-                     <div class="glass p-8 rounded-3xl border-emerald-500/10 hover:border-emerald-500/30 transition-colors">
+                     
+                     <!-- Tracking Card -->
+                     <div class="glass p-8 rounded-3xl border-blue-500/10 relative overflow-hidden hover:border-blue-500/30 transition-colors">
                         <div class="flex items-center gap-3 mb-6">
-                            <div class="p-2 bg-emerald-500/20 rounded-lg text-emerald-400">
+                            <div class="p-2 bg-blue-500/20 rounded-lg text-blue-400">
                                 <i data-lucide="bar-chart-3"></i>
                             </div>
                             <h3 class="text-xl font-bold text-white">Tracking e Análises</h3>
                         </div>
                         <p class="text-slate-400 text-sm mb-6">CAPI Server-Side para máxima precisão nos dados.</p>
+                        
                         <div class="grid grid-cols-2 gap-3">
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="facebook" class="w-4 h-4 text-blue-500"></i> Meta Pixel</div>
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="music-2" class="w-4 h-4 text-pink-500"></i> TikTok Pixel</div>
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="bar-chart" class="w-4 h-4 text-yellow-500"></i> Google Analytics</div>
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="target" class="w-4 h-4 text-red-500"></i> UTMFY</div>
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="tag" class="w-4 h-4 text-blue-300"></i> Tagfy</div>
-                             <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="refresh-cw" class="w-4 h-4 text-emerald-400"></i> Convert+</div>
+                             <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="eye" class="w-4 h-4 text-orange-400"></i> Clarity</div>
+                             <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="refresh-cw" class="w-4 h-4 text-green-400"></i> Convert+</div>
                         </div>
                      </div>
-                     <!-- Automação -->
-                     <div class="glass p-8 rounded-3xl border-brand-500/10 hover:border-brand-500/30 transition-colors">
+
+                     <!-- Automação Card -->
+                     <div class="glass p-8 rounded-3xl border-purple-500/10 relative overflow-hidden hover:border-purple-500/30 transition-colors">
                         <div class="flex items-center gap-3 mb-6">
-                            <div class="p-2 bg-brand-500/20 rounded-lg text-brand-400">
+                            <div class="p-2 bg-purple-500/20 rounded-lg text-purple-400">
                                 <i data-lucide="webhook"></i>
                             </div>
                             <h3 class="text-xl font-bold text-white">Automações</h3>
                         </div>
                         <p class="text-slate-400 text-sm mb-6">Conecte seu checkout a milhares de apps via Webhook.</p>
+                        
                         <div class="grid grid-cols-2 gap-3">
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="zap" class="w-4 h-4 text-orange-500"></i> Zapier</div>
-                             <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="workflow" class="w-4 h-4 text-brand-500"></i> Make (Integromat)</div>
+                             <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="workflow" class="w-4 h-4 text-purple-500"></i> Make (Integromat)</div>
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="message-circle" class="w-4 h-4 text-blue-400"></i> ManyChat</div>
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="file-text" class="w-4 h-4 text-white"></i> Notion</div>
                              <div class="flex items-center gap-2 text-sm text-slate-300 bg-slate-900/50 p-2 rounded border border-slate-800"><i data-lucide="code" class="w-4 h-4 text-emerald-400"></i> Webhooks JSON</div>
@@ -248,98 +328,127 @@
     </section>
 
     <!-- ÁREA DE MEMBROS -->
-    <section id="membros" class="py-24 relative overflow-hidden bg-slate-900/20">
+    <section id="membros" class="py-24 relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 w-[500px] h-[500px] bg-brand-900/20 rounded-full blur-[100px] -translate-y-1/2 -z-10"></div>
+        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
+                
                 <div class="lg:w-1/2">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-6 uppercase tracking-wider">
                         <i data-lucide="check" class="w-3 h-3"></i> Inclusa no Plano
                     </div>
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
                         Sua própria Netflix de Cursos. <br>
-                        <span class="text-emerald-500">Sem pagar extra por isso.</span>
+                        <span class="text-slate-400">Sem pagar extra por isso.</span>
                     </h2>
                     <p class="text-lg text-slate-400 mb-8 leading-relaxed">
                         Diga adeus ao Memberkit ou Kiwify. Entregue seu conteúdo automaticamente após a aprovação do pagamento em uma área de membros bonita, rápida e profissional.
                     </p>
-                    <ul class="space-y-6 mb-10">
-                        <li class="flex items-start gap-4">
-                            <div class="mt-1 p-1 bg-emerald-500/20 rounded text-emerald-400"><i data-lucide="layout-grid" class="w-5 h-5"></i></div>
+
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 p-1 bg-brand-500/20 rounded text-brand-400"><i data-lucide="layout-grid" class="w-4 h-4"></i></div>
                             <div>
                                 <h4 class="text-white font-bold">Áreas de Membros Ilimitadas</h4>
                                 <p class="text-sm text-slate-500">Crie quantos cursos quiser, organize por módulos e aulas.</p>
                             </div>
                         </li>
-                        <li class="flex items-start gap-4">
-                            <div class="mt-1 p-1 bg-emerald-500/20 rounded text-emerald-400"><i data-lucide="play-circle" class="w-5 h-5"></i></div>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 p-1 bg-brand-500/20 rounded text-brand-400"><i data-lucide="play-circle" class="w-4 h-4"></i></div>
                             <div>
                                 <h4 class="text-white font-bold">Vídeo de Onde Quiser</h4>
                                 <p class="text-sm text-slate-500">Embed de YouTube, Vimeo, PandaVideo ou Vturb.</p>
                             </div>
                         </li>
-                        <li class="flex items-start gap-4">
-                            <div class="mt-1 p-1 bg-emerald-500/20 rounded text-emerald-400"><i data-lucide="settings" class="w-5 h-5"></i></div>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 p-1 bg-brand-500/20 rounded text-brand-400"><i data-lucide="file-text" class="w-4 h-4"></i></div>
                             <div>
-                                <h4 class="text-white font-bold">Controle Total</h4>
-                                <p class="text-sm text-slate-500">Liberação gradual de conteúdo, upload de arquivos e gestão de alunos.</p>
+                                <h4 class="text-white font-bold">Upload de Arquivos</h4>
+                                <p class="text-sm text-slate-500">Upload de PDFs, áudios, imagens e arquivos de apoio.</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start gap-3">
+                            <div class="mt-1 p-1 bg-brand-500/20 rounded text-brand-400"><i data-lucide="settings" class="w-4 h-4"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold">Configurações Avançadas</h4>
+                                <p class="text-sm text-slate-500">Liberação gradual de conteúdo e controle total.</p>
                             </div>
                         </li>
                     </ul>
-                    <a href="https://app.evexopay.com/#/register" class="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-500 transition-all shadow-xl shadow-emerald-900/20">
+
+                    <a href="https://app.evexopay.com/#/register" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-950 rounded-lg font-bold hover:bg-slate-200 transition-colors">
                         Criar Minha Conta
                     </a>
                 </div>
-                <div class="lg:w-1/2 w-full relative">
-                    <div class="relative bg-slate-900 rounded-2xl border border-slate-800 p-4 shadow-2xl transform rotate-2 hover:rotate-0 transition-all duration-500">
-                        <div class="absolute -top-4 -left-4 bg-emerald-600 p-4 rounded-xl shadow-lg z-10">
-                            <i data-lucide="graduation-cap" class="w-8 h-8 text-white"></i>
+
+                <div class="lg:w-1/2 w-full">
+                    <div class="relative bg-slate-900 rounded-2xl border border-slate-800 p-4 shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="absolute -top-4 -left-4 bg-slate-800 p-3 rounded-xl border border-slate-700 shadow-lg z-10">
+                            <i data-lucide="graduation-cap" class="w-8 h-8 text-emerald-400"></i>
                         </div>
-                        <div class="bg-slate-950 rounded-lg overflow-hidden aspect-video relative group">
-                            <img src="https://picsum.photos/seed/members/800/450" class="w-full h-full object-cover opacity-40" />
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i data-lucide="play" class="w-16 h-16 text-white opacity-50 group-hover:scale-110 group-hover:opacity-100 transition-all"></i>
+                        <!-- Mockup Content -->
+                        <div class="bg-slate-950 rounded-lg overflow-hidden aspect-video flex flex-col">
+                            <div class="h-full bg-slate-800/50 flex items-center justify-center relative">
+                                <i data-lucide="play" class="w-16 h-16 text-white opacity-50"></i>
+                                <div class="absolute bottom-4 left-4 right-4 h-1 bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-red-500 w-1/3"></div>
+                                </div>
                             </div>
-                            <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-slate-950 to-transparent">
+                            <div class="p-4">
                                 <div class="h-4 w-2/3 bg-slate-800 rounded mb-2"></div>
                                 <div class="h-3 w-1/2 bg-slate-800/50 rounded"></div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- DOMÍNIO PRÓPRIO -->
-    <section class="py-24 border-t border-white/5 bg-slate-950 relative">
+    <!-- DOMÍNIO PRÓPRIO (UPDATED) -->
+    <section class="py-20 border-t border-white/5 bg-slate-950 relative">
          <div class="max-w-6xl mx-auto px-4">
-             <div class="bg-gradient-to-r from-slate-900 to-slate-800/80 rounded-[2.5rem] p-8 md:p-14 border border-slate-700/50 flex flex-col md:flex-row items-center gap-12 shadow-2xl relative overflow-hidden">
-                 <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-emerald-600/10 rounded-full blur-[80px] pointer-events-none"></div>
+             <div class="bg-gradient-to-r from-slate-900 to-slate-800/80 rounded-3xl p-8 md:p-14 border border-slate-700/50 flex flex-col md:flex-row items-center gap-12 shadow-2xl relative overflow-hidden">
+                 <!-- Decorative Glow -->
+                 <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-brand-600/10 rounded-full blur-[80px] pointer-events-none"></div>
+
                  <div class="flex-1 relative z-10">
-                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-6 uppercase tracking-wider">
+                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6 uppercase tracking-wider">
                         <i data-lucide="globe" class="w-3 h-3"></i> Marca & Identidade
                     </div>
-                     <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Seu checkout rodando no seu <span class="gradient-text">próprio domínio.</span></h3>
+                     <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Seu checkout rodando no seu <span class="text-[#ba84fc]">próprio domínio.</span></h3>
                      <p class="text-slate-400 leading-relaxed mb-8 text-lg">
                          Evexopay permite que você conecte um domínio personalizado (via CNAME). O cliente acessa <span class="text-white font-mono bg-slate-950 px-2 py-0.5 rounded text-sm">pay.suamarca.com</span> ao invés de links genéricos.
                      </p>
+
                      <div class="space-y-4">
                          <div class="flex items-center gap-3 text-slate-300 font-medium">
                              <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
                                 <i data-lucide="check" class="w-3 h-3"></i>
                              </div>
-                             Evita bloqueios de anúncios e aumenta credibilidade.
+                             Evita bloqueios de anúncios (Facebook Ads/Google).
                          </div>
                          <div class="flex items-center gap-3 text-slate-300 font-medium">
                              <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
                                 <i data-lucide="check" class="w-3 h-3"></i>
                              </div>
-                             Sua marca em destaque do início ao fim.
+                             Sua marca, sua identidade, do início ao fim.
+                         </div>
+                         <div class="flex items-center gap-3 text-slate-300 font-medium">
+                             <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                                <i data-lucide="check" class="w-3 h-3"></i>
+                             </div>
+                             Mais confiabilidade e segurança para o comprador.
                          </div>
                      </div>
                  </div>
+
+                 <!-- Mockup Browser -->
                  <div class="md:w-5/12 w-full relative z-10">
-                    <div class="bg-slate-900 rounded-xl border border-slate-700 overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+                    <div class="bg-slate-900 rounded-xl border border-slate-700 overflow-hidden shadow-2xl transform rotate-1 transition-transform hover:rotate-0 duration-500">
+                        <!-- Browser Header -->
                         <div class="bg-slate-800 px-4 py-3 flex items-center gap-2 border-b border-slate-700">
                           <div class="flex gap-1.5">
                               <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
@@ -351,11 +460,18 @@
                               <span class="text-slate-200">checkout.suamarca.com.br</span>
                           </div>
                         </div>
+                        <!-- Browser Body -->
                         <div class="p-8 bg-slate-950 flex flex-col items-center justify-center gap-6 min-h-[200px]">
-                           <div class="w-16 h-16 rounded-full bg-emerald-600/10 border border-emerald-500/30 flex items-center justify-center animate-pulse">
-                              <i data-lucide="shield" class="text-emerald-500 w-8 h-8"></i>
+                           <div class="w-16 h-16 rounded-full bg-brand-600/10 border border-brand-500/30 flex items-center justify-center animate-pulse">
+                              <img src="/favicon.svg" class="w-8 h-8 opacity-80" alt="Logo">
                            </div>
-                           <button class="px-8 py-3 bg-emerald-600 text-white text-sm font-bold rounded-lg shadow-lg">FINALIZAR COMPRA</button>
+                           <div class="space-y-2 w-full max-w-[180px]">
+                               <div class="h-2 bg-slate-800 rounded w-full"></div>
+                               <div class="h-2 bg-slate-800 rounded w-2/3 mx-auto"></div>
+                           </div>
+                           <button class="mt-2 px-6 py-2 bg-brand-600 text-white text-xs font-bold rounded-lg opacity-90">
+                               FINALIZAR COMPRA
+                           </button>
                         </div>
                     </div>
                  </div>
@@ -363,55 +479,107 @@
          </div>
     </section>
 
+    <!-- SEGURANÇA -->
+    <section id="seguranca" class="py-20 bg-slate-900/30 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">Segurança e Confiabilidade</h2>
+                <p class="text-slate-400 mt-2">Sua operação protegida por quem entende do assunto.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 bg-slate-950 rounded-xl border border-slate-800 hover:border-brand-500/30 transition-colors text-center group">
+                    <div class="w-12 h-12 mx-auto bg-slate-900 rounded-full flex items-center justify-center mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">SSL/TLS Security</h3>
+                    <p class="text-sm text-slate-500">Criptografia de ponta a ponta em todas as transações.</p>
+                </div>
+
+                <div class="p-6 bg-slate-950 rounded-xl border border-slate-800 hover:border-brand-500/30 transition-colors text-center group">
+                    <div class="w-12 h-12 mx-auto bg-slate-900 rounded-full flex items-center justify-center mb-4 text-blue-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="server"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Infraestrutura Cloud</h3>
+                    <p class="text-sm text-slate-500">Hospedagem robusta na nuvem com alta disponibilidade.</p>
+                </div>
+
+                <div class="p-6 bg-slate-950 rounded-xl border border-slate-800 hover:border-brand-500/30 transition-colors text-center group">
+                    <div class="w-12 h-12 mx-auto bg-slate-900 rounded-full flex items-center justify-center mb-4 text-purple-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="lock"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Anti-fraude Inteligente</h3>
+                    <p class="text-sm text-slate-500">Proteção avançada para evitar chargebacks e fraudes.</p>
+                </div>
+
+                <div class="p-6 bg-slate-950 rounded-xl border border-slate-800 hover:border-brand-500/30 transition-colors text-center group">
+                    <div class="w-12 h-12 mx-auto bg-slate-900 rounded-full flex items-center justify-center mb-4 text-yellow-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Integração Direta</h3>
+                    <p class="text-sm text-slate-500">Conexão oficial com gateways certificados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- TAXAS -->
-    <section id="taxas" class="py-24 relative overflow-hidden">
+    <section id="taxas" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div class="order-2 md:order-1">
-                    <div class="glass rounded-[2rem] p-10 relative border-emerald-500/20">
-                        <div class="absolute -top-4 -right-4 bg-emerald-500 text-white text-xs font-black px-4 py-2 rounded-full shadow-lg animate-bounce">MELHOR TAXA</div>
-                        <div class="space-y-6">
-                            <div class="p-6 rounded-2xl bg-slate-950/50 border border-slate-800 flex justify-between items-center group hover:border-emerald-500/30 transition-colors">
+                    <div class="glass rounded-3xl p-8 relative border-brand-500/20">
+                        <div class="absolute -top-4 -right-4 bg-brand-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg animate-bounce">MELHOR TAXA</div>
+                        
+                        <div class="space-y-4">
+                            <div class="p-6 rounded-2xl bg-slate-950/50 border border-slate-800 flex justify-between items-center">
                                 <div>
-                                    <p class="text-emerald-500 text-xs font-bold uppercase tracking-wider mb-1">Cartão de Crédito</p>
-                                    <p class="text-xs text-slate-500 leading-tight max-w-[200px]">Recebimento ultra rápido direto no seu gateway escolhido.</p>
+                                    <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">Cartão de Crédito</p>
+                                    <p class="text-xs text-slate-500 mt-1 leading-tight max-w-[200px]">Recebimento D+0, D+1 ou D+30 — depende do gateway escolhido.</p>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-5xl font-black text-white">1.7%</span>
+                                    <span class="text-4xl font-black text-white">1.7%</span>
                                 </div>
                             </div>
-                            <div class="p-6 rounded-2xl bg-slate-950/50 border border-slate-800 flex justify-between items-center group hover:border-emerald-500/30 transition-colors">
+
+                            <div class="p-6 rounded-2xl bg-slate-950/50 border border-slate-800 flex justify-between items-center">
                                 <div>
-                                    <p class="text-emerald-500 text-xs font-bold uppercase tracking-wider mb-1">PIX Instantâneo</p>
-                                    <p class="text-xs text-slate-500 leading-tight max-w-[200px]">Taxa competitiva para faturar alto no PIX.</p>
+                                    <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">PIX Instantâneo</p>
+                                    <p class="text-xs text-slate-500 mt-1 leading-tight max-w-[200px]">Taxa super competitiva a partir de 0,99% com limite inteligente.</p>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-5xl font-black text-white">0.99%</span>
+                                    <span class="text-4xl font-black text-white">0.99%</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-8 p-4 bg-emerald-500/5 rounded-xl border border-emerald-500/10 text-center">
-                             <p class="text-sm text-slate-300">Sem mensalidade ou taxa de setup. Você só paga se vender.</p>
+                        <div class="mt-6 p-4 bg-brand-500/10 rounded-xl border border-brand-500/20">
+                             <p class="text-center text-sm text-brand-200">
+                                 Taxas aplicadas sobre o valor da transação. Sem surpresas.
+                             </p>
                         </div>
                     </div>
                 </div>
+
                 <div class="order-1 md:order-2">
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
                         Lucro real no <br>
-                        <span class="gradient-text">seu bolso.</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-purple-400">seu bolso.</span>
                     </h2>
-                    <p class="text-lg text-slate-400 mb-8 leading-relaxed">
+                    <p class="text-lg text-slate-400 mb-8">
                         Pare de pagar taxas abusivas de 10% em outras plataformas. Nós cobramos apenas pelo uso da tecnologia, permitindo que você escale sua operação com margem saudável.
                     </p>
-                    <ul class="space-y-5">
-                        <li class="flex items-center gap-3 text-slate-300">
-                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-500"></i> Sem mensalidade ou pegadinhas
+                    <ul class="space-y-4 text-slate-300 font-medium">
+                        <li class="flex items-center gap-3">
+                            <div class="bg-emerald-500/20 p-1 rounded-full text-emerald-500"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            Sem mensalidade ou taxa de setup
                         </li>
-                        <li class="flex items-center gap-3 text-slate-300">
-                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-500"></i> Saque direto na sua conta do Gateway
+                        <li class="flex items-center gap-3">
+                            <div class="bg-emerald-500/20 p-1 rounded-full text-emerald-500"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            Saque direto na sua conta do Gateway
                         </li>
-                        <li class="flex items-center gap-3 text-slate-300">
-                            <i data-lucide="check-circle" class="w-6 h-6 text-emerald-500"></i> Suporte humanizado via WhatsApp
+                        <li class="flex items-center gap-3">
+                            <div class="bg-emerald-500/20 p-1 rounded-full text-emerald-500"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            Suporte humanizado via WhatsApp
                         </li>
                     </ul>
                 </div>
@@ -422,19 +590,22 @@
     <!-- CTA FINAL -->
     <section class="py-24">
         <div class="max-w-5xl mx-auto px-4">
-            <div class="relative bg-gradient-to-br from-emerald-900 to-slate-900 rounded-[3rem] p-12 md:p-20 text-center overflow-hidden border border-emerald-500/20 shadow-2xl shadow-emerald-900/30">
+            <div class="relative bg-gradient-to-br from-brand-900 to-slate-900 rounded-[2.5rem] p-12 md:p-20 text-center overflow-hidden border border-brand-500/20 shadow-2xl shadow-brand-900/50">
+                <!-- Noise Overlay -->
                 <div class="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-slate-950/80"></div>
+                
                 <div class="relative z-10">
-                    <h2 class="text-4xl md:text-6xl font-black text-white mb-8">Pronto para escalar?</h2>
-                    <p class="text-slate-200 text-lg mb-12 max-w-2xl mx-auto opacity-80">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Pronto para escalar?</h2>
+                    <p class="text-brand-100 text-lg mb-10 max-w-2xl mx-auto opacity-80">
                         Crie sua conta gratuitamente em menos de 2 minutos e descubra o poder de um checkout otimizado.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="https://app.evexopay.com/#/register" class="w-full sm:w-auto px-12 py-5 bg-white text-emerald-950 rounded-2xl font-black text-xl hover:bg-slate-100 transition-all shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
+                        <a href="https://app.evexopay.com/#/register" class="w-full sm:w-auto px-10 py-5 bg-white text-brand-950 rounded-xl font-bold text-xl hover:bg-slate-200 transition-colors shadow-xl shadow-black/20 flex items-center justify-center gap-2">
                             Criar Conta Grátis <i data-lucide="arrow-right"></i>
                         </a>
                     </div>
-                    <p class="mt-8 text-sm text-emerald-200/50 uppercase tracking-widest font-bold">Sem taxas ocultas. Sem risco.</p>
+                    <p class="mt-6 text-sm text-brand-200/50">Não é necessário cartão de crédito.</p>
                 </div>
             </div>
         </div>
@@ -445,46 +616,57 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div class="col-span-1 md:col-span-1">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-8 h-8 bg-emerald-500 rounded flex items-center justify-center">
-                            <i data-lucide="layers" class="text-white w-5 h-5"></i>
-                        </div>
-                        <span class="text-xl font-black text-white uppercase">EvexoPay</span>
+                    <div class="flex items-center gap-2 mb-4">
+                        <svg class="h-8 w-auto object-contain" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Evexopay">
+                            <defs>
+                                <linearGradient id="brand_grad_footer" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#7c3aed"/>
+                                    <stop offset="100%" stop-color="#3b82f6"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4Z" fill="url(#brand_grad_footer)" fill-opacity="0.2"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 8C15.1634 8 8 15.1634 8 24C8 32.8366 15.1634 40 24 40C32.8366 40 40 32.8366 40 24C40 15.1634 32.8366 8 24 8ZM27.5 16.5L19.5 22.5L27.5 28.5V33L15 23.5V21.5L27.5 12V16.5ZM34.5 21.5L29.5 25.25L24.5 21.5V19L29.5 22.75L34.5 19V21.5Z" fill="url(#brand_grad_footer)"/>
+                            <text x="56" y="32" font-family="'Inter', sans-serif" font-weight="800" font-size="24" fill="#FFFFFF" letter-spacing="-0.5">Evexopay</text>
+                        </svg>
                     </div>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                    <p class="text-slate-500 text-sm leading-relaxed">
                         Tecnologia de ponta para quem vende infoprodutos. Focamos na conversão para você focar no conteúdo.
                     </p>
                 </div>
+                
                 <div>
-                    <h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Plataforma</h4>
-                    <ul class="space-y-4 text-sm text-slate-400">
-                        <li><a href="https://app.evexopay.com/#/login" class="hover:text-emerald-400 transition-colors">Entrar</a></li>
-                        <li><a href="https://app.evexopay.com/#/register" class="hover:text-emerald-400 transition-colors">Cadastro</a></li>
-                        <li><a href="#integracoes" class="hover:text-emerald-400 transition-colors">Integrações</a></li>
+                    <h4 class="font-bold text-white mb-4">Plataforma</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="https://app.evexopay.com/#/login" class="hover:text-brand-400 transition-colors">Entrar</a></li>
+                        <li><a href="https://app.evexopay.com/#/register" class="hover:text-brand-400 transition-colors">Cadastro</a></li>
+                        <li><a href="#integracoes" class="hover:text-brand-400 transition-colors">Integrações</a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Suporte</h4>
-                    <ul class="space-y-4 text-sm text-slate-400">
-                        <li><a href="#" class="hover:text-emerald-400 transition-colors">Central de Ajuda</a></li>
-                        <li><a href="#" class="hover:text-emerald-400 transition-colors">Termos de Uso</a></li>
-                        <li><a href="#" class="hover:text-emerald-400 transition-colors">Privacidade</a></li>
+                    <h4 class="font-bold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/termos-de-uso.html" class="hover:text-brand-400 transition-colors">Termos de Uso</a></li>
+                        <li><a href="/politica-de-privacidade.html" class="hover:text-brand-400 transition-colors">Privacidade</a></li>
+                        <li><a href="/politica-de-cookies.html" class="hover:text-brand-400 transition-colors">Política de Cookies</a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Contato</h4>
-                    <ul class="space-y-4 text-sm text-slate-400">
-                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-emerald-500"></i> suporte@evexopay.com</li>
-                        <li class="flex items-center gap-2"><i data-lucide="message-circle" class="w-4 h-4 text-emerald-500"></i> Chat Online</li>
+                    <h4 class="font-bold text-white mb-4">Contato</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> suporte@evexopay.com</li>
+                        <li class="flex items-center gap-2"><i data-lucide="message-circle" class="w-4 h-4"></i> Chat Online</li>
                     </ul>
                 </div>
             </div>
+            
             <div class="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-600">
-                <p>&copy; 2024 EvexoPay Payments Ltda. CNPJ: 00.000.000/0001-00</p>
-                <div class="flex gap-6">
-                    <i data-lucide="instagram" class="w-5 h-5 cursor-pointer hover:text-emerald-500"></i>
-                    <i data-lucide="linkedin" class="w-5 h-5 cursor-pointer hover:text-emerald-500"></i>
-                    <i data-lucide="youtube" class="w-5 h-5 cursor-pointer hover:text-emerald-500"></i>
+                <p>&copy; 2026 EvexoPay Payments Ltda. CNPJ: 39.303.468/0001-90</p>
+                <div class="flex gap-4">
+                    <i data-lucide="instagram" class="w-5 h-5 cursor-pointer hover:text-brand-500 transition-colors"></i>
+                    <i data-lucide="linkedin" class="w-5 h-5 cursor-pointer hover:text-brand-500 transition-colors"></i>
+                    <i data-lucide="youtube" class="w-5 h-5 cursor-pointer hover:text-brand-500 transition-colors"></i>
                 </div>
             </div>
         </div>
@@ -493,35 +675,28 @@
     <script>
         lucide.createIcons();
 
-        // Header Scroll Effect
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                header.classList.add('glass', 'py-4', 'border-white/5', 'shadow-2xl');
-                header.classList.remove('py-6', 'border-white/0');
-            } else {
-                header.classList.remove('glass', 'py-4', 'border-white/5', 'shadow-2xl');
-                header.classList.add('py-6', 'border-white/0');
-            }
-        });
-
-        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
         const closeIcon = document.getElementById('close-icon');
 
-        menuToggle.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.toggle('mobile-menu-open');
-            menuIcon.classList.toggle('hidden', isOpen);
-            closeIcon.classList.toggle('hidden', !isOpen);
-        });
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mobileMenu.classList.toggle('mobile-menu-open');
+                mobileMenu.classList.toggle('hidden', !isOpen);
+                if (menuIcon) menuIcon.classList.toggle('hidden', isOpen);
+                if (closeIcon) closeIcon.classList.toggle('hidden', !isOpen);
+            });
+        }
 
         document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('mobile-menu-open');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('mobile-menu-open');
+                    mobileMenu.classList.add('hidden');
+                }
+                if (menuIcon) menuIcon.classList.remove('hidden');
+                if (closeIcon) closeIcon.classList.add('hidden');
             });
         });
     </script>
